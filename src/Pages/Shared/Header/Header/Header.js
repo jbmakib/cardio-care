@@ -12,7 +12,7 @@ const Header = () => {
     return (
         <nav className="bg-white shadow-lg">
             {/* desktop view menu */}
-            <div className="px-4 mx-auto container">
+            <div className="px-4 md:px-0 mx-auto container">
                 <div className="flex justify-between">
                     <div className="flex space-x-7">
                         <div>
@@ -43,18 +43,18 @@ const Header = () => {
                     </div>
                     {/* Secondary Navbar items */}
                     <div className="hidden md:flex items-center space-x-3 ">
-                        <a
-                            href="/"
+                        <NavLink
+                            to="/login"
                             className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-red-600 hover:text-white transition duration-300"
                         >
                             Log In
-                        </a>
-                        <a
-                            href="/"
+                        </NavLink>
+                        <NavLink
+                            to="/sign-up"
                             className="py-2 px-2 font-medium text-white bg-red-600 rounded hover:bg-red-500 transition duration-300"
                         >
                             Sign Up
-                        </a>
+                        </NavLink>
                     </div>
                     {/* Mobile menu button */}
                     <div className="md:hidden flex items-center">
@@ -79,7 +79,9 @@ const Header = () => {
                 </div>
             </div>
             {/* mobile menu */}
-            <div className={`${isMenuActive ? "" : "hidden "}container`}>
+            <div
+                className={`${isMenuActive ? "" : "hidden "}container mx-auto`}
+            >
                 <ul className="text-center">
                     <MobileMenuItem location="/home">Home</MobileMenuItem>
                     <MobileMenuItem location="/services">
@@ -89,6 +91,8 @@ const Header = () => {
                     <MobileMenuItem location="/contact">
                         Contact Us
                     </MobileMenuItem>
+                    <MobileMenuItem location="/login">Login</MobileMenuItem>
+                    <MobileMenuItem location="/sign-up">Sign Up</MobileMenuItem>
                 </ul>
             </div>
         </nav>
