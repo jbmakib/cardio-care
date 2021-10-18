@@ -15,6 +15,7 @@ const Input = ({ children, type, id, setInputState }) => {
                 onInput={(e) => setInputState(e.target.value)}
                 className="px-3 py-3 placeholder-red-400 text-red-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
                 placeholder={children}
+                required
                 style={{
                     transition: "all 0.15s ease 0s",
                 }}
