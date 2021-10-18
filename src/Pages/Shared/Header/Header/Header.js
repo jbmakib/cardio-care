@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import MobileMenuItem from "../MobileMenuItem/MobileMenuItem";
+import PrimaryMenuItem from "../PrimaryMenuItem/PrimaryMenuItem";
 
 const Header = () => {
     const [isMenuActive, setIsMenuActive] = useState(false);
@@ -26,35 +27,18 @@ const Header = () => {
                         </div>
                         {/* Primary Navbar items */}
                         <div className="hidden md:flex items-center space-x-1">
-                            <NavLink
-                                exact
-                                to="/home"
-                                className="py-4 px-2 font-semibold text-gray-500 hover:text-red-600 transition duration-300"
-                                activeClassName="text-red-600 border-b-4 border-red-600"
-                            >
+                            <PrimaryMenuItem location="/home">
                                 Home
-                            </NavLink>
-                            <NavLink
-                                to="/services"
-                                className="py-4 px-2 font-semibold text-gray-500 hover:text-red-600 transition duration-300"
-                                activeClassName="text-red-600 border-b-4 border-red-600"
-                            >
+                            </PrimaryMenuItem>
+                            <PrimaryMenuItem location="/services">
                                 Services
-                            </NavLink>
-                            <NavLink
-                                to="/about"
-                                className="py-4 px-2 text-gray-500 font-semibold hover:text-red-600 transition duration-300"
-                                activeClassName="text-red-600 border-b-4 border-red-600"
-                            >
+                            </PrimaryMenuItem>
+                            <PrimaryMenuItem location="/about">
                                 About
-                            </NavLink>
-                            <NavLink
-                                to="/contact"
-                                className="py-4 px-2 text-gray-500 font-semibold hover:text-red-600 transition duration-300"
-                                activeClassName="text-red-600 border-b-4 border-red-600"
-                            >
+                            </PrimaryMenuItem>
+                            <PrimaryMenuItem location="/contact">
                                 Contact Us
-                            </NavLink>
+                            </PrimaryMenuItem>
                         </div>
                     </div>
                     {/* Secondary Navbar items */}
