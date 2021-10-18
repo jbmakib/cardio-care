@@ -8,9 +8,16 @@ const Login = () => {
     const location = useLocation();
     const history = useHistory();
     const redirect_URI = location.state?.from || "/";
-    const { signInWithGoogle, signInWithGithub } = useAuth();
+    const {
+        signInWithGoogle,
+        signInWithGithub,
+        setLoginEmail,
+        setLoginPassword,
+        logInWithEmailAndPassword,
+    } = useAuth();
 
-    const handleSignInWithProvider = (provider) => {
+    // function for handling log in
+    const handleSignIn = (provider) => {
         provider()
             .then((result) => {
                 history.push(redirect_URI);
@@ -19,6 +26,12 @@ const Login = () => {
             .catch((err) => {
                 console.log(err.message);
             });
+    };
+
+    // function for handling form submit
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        handleSignIn(logInWithEmailAndPassword);
     };
     return (
         <div className="container mx-auto px-4 h-full">
@@ -34,18 +47,14 @@ const Login = () => {
                             <div className="btn-wrapper text-center">
                                 <LoginButton
                                     onClick={() =>
-                                        handleSignInWithProvider(
-                                            signInWithGoogle
-                                        )
+                                        handleSignIn(signInWithGoogle)
                                     }
                                 >
                                     Google
                                 </LoginButton>
                                 <LoginButton
                                     onClick={() =>
-                                        handleSignInWithProvider(
-                                            signInWithGithub
-                                        )
+                                        handleSignIn(signInWithGithub)
                                     }
                                 >
                                     Github
@@ -57,13 +66,18 @@ const Login = () => {
                             <div className="text-red-500 text-center mb-3 font-bold">
                                 <small>Or Log in with credentials</small>
                             </div>
-                            <form>
-                                <Input type="email" id="login-email-input">
+                            <form onSubmit={handleFormSubmit}>
+                                <Input
+                                    type="email"
+                                    id="login-email-input"
+                                    setInputState={setLoginEmail}
+                                >
                                     Email
                                 </Input>
                                 <Input
                                     type="password"
                                     id="login-password-input"
+                                    setInputState={setLoginPassword}
                                 >
                                     Password
                                 </Input>
@@ -83,15 +97,14 @@ const Login = () => {
                                     </label>
                                 </div>
                                 <div className="text-center mt-6">
-                                    <button
+                                    <input
                                         className="bg-red-900 text-white active:bg-red-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                                        type="button"
+                                        type="submit"
+                                        value="Log In"
                                         style={{
                                             transition: "all 0.15s ease 0s",
                                         }}
-                                    >
-                                        Log In
-                                    </button>
+                                    ></input>
                                 </div>
                             </form>
                         </div>
