@@ -3,6 +3,7 @@ import {
     getAuth,
     signInWithPopup,
     GoogleAuthProvider,
+    GithubAuthProvider,
     signOut,
     onAuthStateChanged,
 } from "firebase/auth";
@@ -16,10 +17,16 @@ const useFirebase = () => {
 
     // get providers
     const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
     // handle google sign in
     const signInWithGoogle = () => {
         return signInWithPopup(auth, googleProvider);
+    };
+
+    // handle github sign in
+    const signInWithGithub = () => {
+        return signInWithPopup(auth, githubProvider);
     };
 
     // for logging out
@@ -41,6 +48,7 @@ const useFirebase = () => {
     return {
         user,
         signInWithGoogle,
+        signInWithGithub,
         logOut,
     };
 };
