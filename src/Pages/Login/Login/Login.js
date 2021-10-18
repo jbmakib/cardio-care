@@ -8,7 +8,7 @@ const Login = () => {
     const location = useLocation();
     const history = useHistory();
     const redirect_URI = location.state?.from || "/";
-    const { signInWithGoogle } = useAuth();
+    const { signInWithGoogle, signInWithGithub } = useAuth();
 
     const handleSignInWithProvider = (provider) => {
         provider()
@@ -41,7 +41,15 @@ const Login = () => {
                                 >
                                     Google
                                 </LoginButton>
-                                <LoginButton>Github</LoginButton>
+                                <LoginButton
+                                    onClick={() =>
+                                        handleSignInWithProvider(
+                                            signInWithGithub
+                                        )
+                                    }
+                                >
+                                    Github
+                                </LoginButton>
                             </div>
                             <hr className="mt-4 border-b-1 border-red-400" />
                         </div>
