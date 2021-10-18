@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../../../hooks/useAuth";
 import MobileMenuItem from "../MobileMenuItem/MobileMenuItem";
 import PrimaryMenuItem from "../PrimaryMenuItem/PrimaryMenuItem";
 
 const Header = () => {
+    const { user, logOut } = useAuth();
+
     const [isMenuActive, setIsMenuActive] = useState(false);
     const handleMenuToggle = () => {
         setIsMenuActive(!isMenuActive);
@@ -42,19 +45,33 @@ const Header = () => {
                         </div>
                     </div>
                     {/* Secondary Navbar items */}
-                    <div className="hidden md:flex items-center space-x-3 ">
-                        <NavLink
-                            to="/login"
-                            className="py-2 px-2 font-medium text-gray-500 rounded hover:bg-red-600 hover:text-white transition duration-300"
-                        >
-                            Log In
-                        </NavLink>
-                        <NavLink
-                            to="/sign-up"
-                            className="py-2 px-2 font-medium text-white bg-red-600 rounded hover:bg-red-500 transition duration-300"
-                        >
-                            Sign Up
-                        </NavLink>
+                    <div className="hidden md:flex items-center space-x-3">
+                        {user.accessToken ? (
+                            <>
+                                <span>{user.displayName}</span>
+                                <button
+                                    onClick={logOut}
+                                    className="py-2 px-2 font-medium text-white bg-red-600 rounded hover:bg-red-500 transition duration-300"
+                                >
+                                    Log Out
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <NavLink
+                                    to="/login"
+                                    className="py-2 px-3 font-medium text-gray-500 rounded hover:bg-red-600 hover:text-white transition duration-300"
+                                >
+                                    Log In
+                                </NavLink>
+                                <NavLink
+                                    to="/sign-up"
+                                    className="py-2 px-3 font-medium text-white bg-red-600 rounded hover:bg-red-500 transition duration-300"
+                                >
+                                    Sign Up
+                                </NavLink>
+                            </>
+                        )}
                     </div>
                     {/* Mobile menu button */}
                     <div className="md:hidden flex items-center">
@@ -91,8 +108,26 @@ const Header = () => {
                     <MobileMenuItem location="/contact">
                         Contact Us
                     </MobileMenuItem>
-                    <MobileMenuItem location="/login">Login</MobileMenuItem>
-                    <MobileMenuItem location="/sign-up">Sign Up</MobileMenuItem>
+                    {user.accessToken ? (
+                        <li className="flex justify-between items-center px-3 py-3">
+                            <span>{user.displayName}</span>
+                            <button
+                                className="py-2 px-2 font-medium text-white bg-red-600 rounded hover:bg-red-500 transition duration-300"
+                                onClick={logOut}
+                            >
+                                Logout
+                            </button>
+                        </li>
+                    ) : (
+                        <>
+                            <MobileMenuItem location="/login">
+                                Login
+                            </MobileMenuItem>
+                            <MobileMenuItem location="/sign-up">
+                                Sign Up
+                            </MobileMenuItem>
+                        </>
+                    )}
                 </ul>
             </div>
         </nav>
