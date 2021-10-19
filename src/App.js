@@ -20,9 +20,9 @@ function App() {
                     <Route exact path="/">
                         <Home></Home>
                     </Route>
-                    <PrivateRoute path="/home">
+                    <Route path="/home">
                         <Home></Home>
-                    </PrivateRoute>
+                    </Route>
                     <Route path="/services">
                         <Services items={7}></Services>
                     </Route>

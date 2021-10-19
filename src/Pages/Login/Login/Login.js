@@ -10,6 +10,8 @@ const Login = () => {
     const history = useHistory();
     const redirect_URI = location.state?.from || "/";
     const {
+        error,
+        setError,
         signInWithGoogle,
         signInWithGithub,
         setLoginEmail,
@@ -25,7 +27,7 @@ const Login = () => {
                 history.push(redirect_URI);
             })
             .catch((err) => {
-                console.log(err.message);
+                setError(err.message);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -97,9 +99,16 @@ const Login = () => {
                                         </span>
                                     </label>
                                 </div>
+                                {error ? (
+                                    <small className="text-red-900 block px-4 py-2 text-center">
+                                        {error}
+                                    </small>
+                                ) : (
+                                    ""
+                                )}
                                 <div className="text-center mt-6">
                                     <input
-                                        className="bg-red-900 text-white active:bg-red-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full small-transition"
+                                        className="bg-red-900 text-white active:bg-red-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full small-transition cursor-pointer"
                                         type="submit"
                                         value="Log In"
                                     ></input>

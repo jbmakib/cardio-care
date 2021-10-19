@@ -13,6 +13,8 @@ const SignUp = () => {
     const redirect_URI = location.state?.from || "/";
 
     const {
+        error,
+        setError,
         setUser,
         signInWithGoogle,
         signInWithGithub,
@@ -29,10 +31,9 @@ const SignUp = () => {
         provider()
             .then((result) => {
                 history.push(redirect_URI);
-                console.log(result.user);
             })
             .catch((err) => {
-                console.log(err.message);
+                setError(err.message);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -43,22 +44,21 @@ const SignUp = () => {
     const handleFormSubmit = (e) => {
         e.preventDefault();
         if (signUpPassword.length < 6) {
-            // return an error
+            setError("Password must be 6 character long");
             return;
         } else if (signUpPassword !== rePass) {
-            // return an error
+            setError("Your Entered Password and Retyped isn't the same");
             return;
         }
         signUpWithEmailAndPassword()
             .then((result) => {
                 updateUserProfile().then(() => {
-                    console.log(result.user);
                     setUser(result.user);
                 });
                 history.push(redirect_URI);
             })
             .catch((err) => {
-                console.log(err.message);
+                setError(err.message);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -128,9 +128,16 @@ const SignUp = () => {
                                 >
                                     Re-Type Password
                                 </Input>
+                                {error ? (
+                                    <small className="text-red-900 block px-4 py-2 text-center">
+                                        {error}
+                                    </small>
+                                ) : (
+                                    ""
+                                )}
                                 <div className="text-center mt-6">
                                     <input
-                                        className="bg-red-900 text-white active:bg-red-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full small-transition"
+                                        className="bg-red-900 text-white active:bg-red-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full small-transition cursor-pointer"
                                         type="submit"
                                         value="Register"
                                     ></input>

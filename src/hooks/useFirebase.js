@@ -19,6 +19,7 @@ const useFirebase = () => {
     const [user, setUser] = useState(null);
     const [showName, setShowName] = useState("");
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState("");
 
     // states for login
     const [loginEmail, setLoginEmail] = useState("");
@@ -34,24 +35,28 @@ const useFirebase = () => {
 
     // handle google sign in
     const signInWithGoogle = () => {
+        setError("");
         setIsLoading(true);
         return signInWithPopup(auth, googleProvider);
     };
 
     // handle github sign in
     const signInWithGithub = () => {
+        setError("");
         setIsLoading(true);
         return signInWithPopup(auth, githubProvider);
     };
 
     // handle login with email and password
     const logInWithEmailAndPassword = () => {
+        setError("");
         setIsLoading(true);
         return signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     };
 
     // handle sign-up with email and password
     const signUpWithEmailAndPassword = () => {
+        setError("");
         setIsLoading(true);
         return createUserWithEmailAndPassword(
             auth,
@@ -62,6 +67,7 @@ const useFirebase = () => {
 
     // for logging out
     const logOut = () => {
+        setError("");
         setIsLoading(true);
         signOut(auth).finally(() => {
             setIsLoading(false);
@@ -83,6 +89,7 @@ const useFirebase = () => {
 
     // update user profile
     const updateUserProfile = () => {
+        setError("");
         setIsLoading(true);
         return updateProfile(auth.currentUser, { displayName: showName });
     };
@@ -90,6 +97,8 @@ const useFirebase = () => {
     return {
         user,
         setUser,
+        error,
+        setError,
         setLoginEmail,
         setLoginPassword,
         logInWithEmailAndPassword,
