@@ -5,7 +5,7 @@ import "./Footer.css";
 
 const Footer = () => {
     return (
-        <nav id="footer" className="bg-red-900 text-white">
+        <nav className="bg-red-900 text-white container-mx-auto">
             <div className="container mx-auto pt-8 pb-4">
                 <div className="flex flex-wrap overflow-hidden sm:-mx-1 md:-mx-px lg:-mx-2 xl:-mx-2">
                     <OneOfFour>
