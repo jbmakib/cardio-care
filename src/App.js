@@ -8,6 +8,7 @@ import Header from "./Pages/Shared/Header/Header/Header";
 import SignUp from "./Pages/SignUp/SignUp/SignUp";
 import NotFound from "./Pages/NotFound/NotFound";
 import Footer from "./Pages/Shared/Footer/Footer";
+import Services from "./Pages/Services/Services/Services";
 
 function App() {
     return (
@@ -21,6 +22,9 @@ function App() {
                     <PrivateRoute path="/home">
                         <Home></Home>
                     </PrivateRoute>
+                    <Route path="/services">
+                        <Services items={7}></Services>
+                    </Route>
                     <Route path="/login">
                         <Login></Login>
                     </Route>

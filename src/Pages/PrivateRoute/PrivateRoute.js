@@ -6,7 +6,7 @@ const PrivateRoute = ({ children, ...rest }) => {
     const { user, isLoading } = useAuth();
     if (isLoading) {
         return (
-            <div className="text-3xl text-center mt-20 font-bold text-red-500">
+            <div className="text-3xl text-center my-20 font-bold text-red-500">
                 Loading data from server please wait
             </div>
         );
