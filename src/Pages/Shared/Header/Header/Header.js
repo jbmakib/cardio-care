@@ -24,7 +24,7 @@ const Header = () => {
                                 className="flex items-center py-4 px-2"
                             >
                                 <span className="font-bold text-red-600 text-lg">
-                                    WebName
+                                    Cardio Care
                                 </span>
                             </NavLink>
                         </div>
