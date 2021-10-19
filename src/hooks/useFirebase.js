@@ -5,6 +5,8 @@ import {
     GoogleAuthProvider,
     GithubAuthProvider,
     signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    updateProfile,
     signOut,
     onAuthStateChanged,
 } from "firebase/auth";
@@ -15,10 +17,15 @@ initializeAuthentication();
 const useFirebase = () => {
     const auth = getAuth();
     const [user, setUser] = useState({});
+    const [showName, setShowName] = useState("");
 
     // states for login
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
+
+    // states for sign up
+    const [signUpEmail, setSignUpEmail] = useState("");
+    const [signUpPassword, setSignUpPassword] = useState("");
 
     // get providers
     const googleProvider = new GoogleAuthProvider();
@@ -39,6 +46,15 @@ const useFirebase = () => {
         return signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     };
 
+    // handle sign-up with email and password
+    const signUpWithEmailAndPassword = () => {
+        return createUserWithEmailAndPassword(
+            auth,
+            signUpEmail,
+            signUpPassword
+        );
+    };
+
     // for logging out
     const logOut = () => {
         signOut(auth);
@@ -55,11 +71,22 @@ const useFirebase = () => {
         return unsubscribed;
     }, [auth]);
 
+    // update user profile
+    const updateUserProfile = () => {
+        return updateProfile(auth.currentUser, { displayName: showName });
+    };
+
     return {
         user,
+        setUser,
         setLoginEmail,
         setLoginPassword,
         logInWithEmailAndPassword,
+        setSignUpEmail,
+        setSignUpPassword,
+        signUpWithEmailAndPassword,
+        setShowName,
+        updateUserProfile,
         signInWithGoogle,
         signInWithGithub,
         logOut,

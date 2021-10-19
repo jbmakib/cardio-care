@@ -1,21 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import LoginButton from "../../Login/LoginButton/LoginButton";
 import Input from "../../Shared/Input/Input";
 
 const SignUp = () => {
+    // states for checking passwords
+    const [firstPass, setFirstPass] = useState("");
+    const [rePass, setRePass] = useState("");
+
     const location = useLocation();
     const history = useHistory();
     const redirect_URI = location.state?.from || "/";
 
-    const { signInWithGoogle, signInWithGithub } = useAuth();
+    const {
+        signInWithGoogle,
+        signInWithGithub,
+        setSignUpEmail,
+        setSignUpPassword,
+        signUpWithEmailAndPassword,
+        setShowName,
+        updateUserProfile,
+    } = useAuth();
 
     const handleSignIn = (provider) => {
         provider()
             .then((result) => {
                 history.push(redirect_URI);
                 console.log(result.user);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    };
+
+    // handle form submit
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+        setSignUpPassword(firstPass);
+        if (firstPass.length < 6) {
+            // return an error
+            return;
+        } else if (firstPass !== rePass) {
+            // return an error
+            return;
+        }
+        signUpWithEmailAndPassword()
+            .then((result) => {
+                updateUserProfile();
+                history.push(redirect_URI);
             })
             .catch((err) => {
                 console.log(err.message);
@@ -56,25 +89,32 @@ const SignUp = () => {
                                     Or Create Account with credentials
                                 </small>
                             </div>
-                            <form>
+                            <form onSubmit={handleFormSubmit}>
+                                <Input
+                                    type="text"
+                                    id="signUp-name-input"
+                                    setInputState={setShowName}
+                                >
+                                    Full Name
+                                </Input>
                                 <Input
                                     type="email"
                                     id="signUp-email-input"
-                                    // setInputState={setLoginEmail}
+                                    setInputState={setSignUpEmail}
                                 >
                                     Email
                                 </Input>
                                 <Input
                                     type="password"
                                     id="signUp-password-input"
-                                    // setInputState={setLoginPassword}
+                                    setInputState={setFirstPass}
                                 >
                                     Password
                                 </Input>
                                 <Input
                                     type="password"
                                     id="signUp-re-password-input"
-                                    // setInputState={setLoginPassword}
+                                    setInputState={setRePass}
                                 >
                                     Re-Type Password
                                 </Input>
