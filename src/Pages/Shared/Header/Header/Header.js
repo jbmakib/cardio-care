@@ -13,7 +13,7 @@ const Header = () => {
     };
 
     return (
-        <nav className="bg-white shadow-lg">
+        <nav className="bg-white shadow-lg sticky top-0">
             {/* desktop view menu */}
             <div className="px-4 md:px-0 mx-auto container">
                 <div className="flex justify-between">
