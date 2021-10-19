@@ -6,7 +6,6 @@ import Input from "../../Shared/Input/Input";
 
 const SignUp = () => {
     // states for checking passwords
-    const [firstPass, setFirstPass] = useState("");
     const [rePass, setRePass] = useState("");
 
     const location = useLocation();
@@ -14,9 +13,11 @@ const SignUp = () => {
     const redirect_URI = location.state?.from || "/";
 
     const {
+        setUser,
         signInWithGoogle,
         signInWithGithub,
         setSignUpEmail,
+        signUpPassword,
         setSignUpPassword,
         signUpWithEmailAndPassword,
         setShowName,
@@ -37,17 +38,19 @@ const SignUp = () => {
     // handle form submit
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        setSignUpPassword(firstPass);
-        if (firstPass.length < 6) {
+        if (signUpPassword.length < 6) {
             // return an error
             return;
-        } else if (firstPass !== rePass) {
+        } else if (signUpPassword !== rePass) {
             // return an error
             return;
         }
         signUpWithEmailAndPassword()
             .then((result) => {
-                updateUserProfile();
+                updateUserProfile().then(() => {
+                    console.log(result.user);
+                    setUser(result.user);
+                });
                 history.push(redirect_URI);
             })
             .catch((err) => {
@@ -107,7 +110,7 @@ const SignUp = () => {
                                 <Input
                                     type="password"
                                     id="signUp-password-input"
-                                    setInputState={setFirstPass}
+                                    setInputState={setSignUpPassword}
                                 >
                                     Password
                                 </Input>
@@ -122,7 +125,7 @@ const SignUp = () => {
                                     <input
                                         className="bg-red-900 text-white active:bg-red-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full small-transition"
                                         type="submit"
-                                        value="Log In"
+                                        value="Register"
                                     ></input>
                                 </div>
                             </form>

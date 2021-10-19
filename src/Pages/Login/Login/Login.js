@@ -22,7 +22,6 @@ const Login = () => {
         provider()
             .then((result) => {
                 history.push(redirect_URI);
-                console.log(result.user);
             })
             .catch((err) => {
                 console.log(err.message);

@@ -46,9 +46,9 @@ const Header = () => {
                     </div>
                     {/* Secondary Navbar items */}
                     <div className="hidden md:flex items-center space-x-3">
-                        {user.accessToken ? (
+                        {user ? (
                             <>
-                                <span>{user.displayName}</span>
+                                <span>{user.displayName || user.email}</span>
                                 <button
                                     onClick={logOut}
                                     className="py-2 px-2 font-medium text-white bg-red-600 rounded hover:bg-red-500 transition duration-300"
@@ -108,9 +108,9 @@ const Header = () => {
                     <MobileMenuItem location="/contact">
                         Contact Us
                     </MobileMenuItem>
-                    {user.accessToken ? (
+                    {user ? (
                         <li className="flex justify-between items-center px-3 py-3">
-                            <span>{user.displayName}</span>
+                            <span>{user.displayName || user.email}</span>
                             <button
                                 className="py-2 px-2 font-medium text-white bg-red-600 rounded hover:bg-red-500 transition duration-300"
                                 onClick={logOut}

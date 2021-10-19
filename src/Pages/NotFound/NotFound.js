@@ -22,13 +22,14 @@ const NotFound = () => {
                     </Link>
                 </div>
                 {/* svg code here */}
-                <div className="max-w-lg">
+                <div className="max-w-lg pt-10 md:pt-0 hidden md:block">
                     <svg
                         id="Layer_1"
                         data-name="Layer 1"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 2395 1800"
                         width="400"
+                        className="w-3/4 md:w-full"
                     >
                         <defs></defs>
                         <title>ArtBoard 1 copy</title>

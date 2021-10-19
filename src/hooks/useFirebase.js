@@ -16,7 +16,7 @@ initializeAuthentication();
 
 const useFirebase = () => {
     const auth = getAuth();
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     const [showName, setShowName] = useState("");
 
     // states for login
@@ -65,11 +65,12 @@ const useFirebase = () => {
             if (user) {
                 setUser(user);
             } else {
-                setUser({});
+                setUser(null);
             }
         });
         return unsubscribed;
-    }, [auth]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // update user profile
     const updateUserProfile = () => {
@@ -83,6 +84,7 @@ const useFirebase = () => {
         setLoginPassword,
         logInWithEmailAndPassword,
         setSignUpEmail,
+        signUpPassword,
         setSignUpPassword,
         signUpWithEmailAndPassword,
         setShowName,
