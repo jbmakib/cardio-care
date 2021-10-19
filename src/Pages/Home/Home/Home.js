@@ -1,6 +1,6 @@
 import React from "react";
-import CovidSection from "../../CovidSection/CovidSection/CovidSection";
 import Services from "../../Services/Services/Services";
+import CovidSection from "../CovidSection/CovidSection";
 import Banner from "../Banner/Banner";
 import Doctors from "../Doctors/Doctors";
 
