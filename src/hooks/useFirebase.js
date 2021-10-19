@@ -18,6 +18,7 @@ const useFirebase = () => {
     const auth = getAuth();
     const [user, setUser] = useState(null);
     const [showName, setShowName] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
 
     // states for login
     const [loginEmail, setLoginEmail] = useState("");
@@ -33,21 +34,25 @@ const useFirebase = () => {
 
     // handle google sign in
     const signInWithGoogle = () => {
+        setIsLoading(true);
         return signInWithPopup(auth, googleProvider);
     };
 
     // handle github sign in
     const signInWithGithub = () => {
+        setIsLoading(true);
         return signInWithPopup(auth, githubProvider);
     };
 
     // handle login with email and password
     const logInWithEmailAndPassword = () => {
+        setIsLoading(true);
         return signInWithEmailAndPassword(auth, loginEmail, loginPassword);
     };
 
     // handle sign-up with email and password
     const signUpWithEmailAndPassword = () => {
+        setIsLoading(true);
         return createUserWithEmailAndPassword(
             auth,
             signUpEmail,
@@ -57,7 +62,10 @@ const useFirebase = () => {
 
     // for logging out
     const logOut = () => {
-        signOut(auth);
+        setIsLoading(true);
+        signOut(auth).finally(() => {
+            setIsLoading(false);
+        });
     };
 
     useEffect(() => {
@@ -67,6 +75,7 @@ const useFirebase = () => {
             } else {
                 setUser(null);
             }
+            setIsLoading(false);
         });
         return unsubscribed;
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,6 +83,7 @@ const useFirebase = () => {
 
     // update user profile
     const updateUserProfile = () => {
+        setIsLoading(true);
         return updateProfile(auth.currentUser, { displayName: showName });
     };
 
@@ -91,6 +101,8 @@ const useFirebase = () => {
         updateUserProfile,
         signInWithGoogle,
         signInWithGithub,
+        isLoading,
+        setIsLoading,
         logOut,
     };
 };

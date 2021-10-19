@@ -22,6 +22,7 @@ const SignUp = () => {
         signUpWithEmailAndPassword,
         setShowName,
         updateUserProfile,
+        setIsLoading,
     } = useAuth();
 
     const handleSignIn = (provider) => {
@@ -32,6 +33,9 @@ const SignUp = () => {
             })
             .catch((err) => {
                 console.log(err.message);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     };
 
@@ -55,6 +59,9 @@ const SignUp = () => {
             })
             .catch((err) => {
                 console.log(err.message);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     };
     return (

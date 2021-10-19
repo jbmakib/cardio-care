@@ -15,6 +15,7 @@ const Login = () => {
         setLoginEmail,
         setLoginPassword,
         logInWithEmailAndPassword,
+        setIsLoading,
     } = useAuth();
 
     // function for handling log in
@@ -25,6 +26,9 @@ const Login = () => {
             })
             .catch((err) => {
                 console.log(err.message);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     };
 
