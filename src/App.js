@@ -10,6 +10,7 @@ import NotFound from "./Pages/NotFound/NotFound";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Services from "./Pages/Services/Services/Services";
 import BookService from "./Pages/BookService/BookService";
+import ContactUs from "./Pages/ContactUs/ContactUs/ContactUs";
 
 function App() {
     return (
@@ -28,6 +29,9 @@ function App() {
                     </Route>
                     <PrivateRoute path="/service/:id">
                         <BookService></BookService>
+                    </PrivateRoute>
+                    <PrivateRoute path="/contact">
+                        <ContactUs></ContactUs>
                     </PrivateRoute>
                     <Route path="/login">
                         <Login></Login>

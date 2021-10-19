@@ -25,9 +25,9 @@ const Footer = () => {
                             <li className="leading-7 text-sm">
                                 <NavLink
                                     className="underline text-small"
-                                    to="/about"
+                                    to="/contact"
                                 >
-                                    About Us
+                                    Contact Us
                                 </NavLink>
                             </li>
                         </ul>
@@ -38,15 +38,9 @@ const Footer = () => {
                             <li className="leading-7 text-sm">
                                 <NavLink
                                     className="underline text-small"
-                                    to="/login"
-                                ></NavLink>
-                            </li>
-                            <li className="leading-7 text-sm">
-                                <NavLink
-                                    className="underline text-small"
-                                    to="/login"
+                                    to="/about"
                                 >
-                                    Login
+                                    About Us
                                 </NavLink>
                             </li>
                         </ul>
