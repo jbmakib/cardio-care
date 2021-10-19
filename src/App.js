@@ -6,6 +6,7 @@ import Login from "./Pages/Login/Login/Login";
 import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
 import Header from "./Pages/Shared/Header/Header/Header";
 import SignUp from "./Pages/SignUp/SignUp/SignUp";
+import NotFound from "./Pages/NotFound/NotFound";
 
 function App() {
     return (
@@ -24,6 +25,9 @@ function App() {
                     </Route>
                     <Route path="/sign-up">
                         <SignUp></SignUp>
+                    </Route>
+                    <Route path="*">
+                        <NotFound></NotFound>
                     </Route>
                 </Switch>
             </Router>
