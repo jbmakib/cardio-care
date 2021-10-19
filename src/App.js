@@ -7,6 +7,7 @@ import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
 import Header from "./Pages/Shared/Header/Header/Header";
 import SignUp from "./Pages/SignUp/SignUp/SignUp";
 import NotFound from "./Pages/NotFound/NotFound";
+import Footer from "./Pages/Shared/Footer/Footer";
 
 function App() {
     return (
@@ -30,6 +31,7 @@ function App() {
                         <NotFound></NotFound>
                     </Route>
                 </Switch>
+                <Footer></Footer>
             </Router>
         </AuthProvider>
     );
