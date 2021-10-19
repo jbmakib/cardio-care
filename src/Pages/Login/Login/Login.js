@@ -1,8 +1,9 @@
 import React from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
-import Input from "../Input/Input";
+import Input from "../../Shared/Input/Input";
 import LoginButton from "../LoginButton/LoginButton";
+import "./Login.css";
 
 const Login = () => {
     const location = useLocation();
@@ -86,10 +87,7 @@ const Login = () => {
                                         <input
                                             id="customCheckLogin"
                                             type="checkbox"
-                                            className="form-checkbox text-red-800 ml-1 w-5 h-5"
-                                            style={{
-                                                transition: "all 0.15s ease 0s",
-                                            }}
+                                            className="form-checkbox text-red-800 ml-1 w-5 h-5 small-transition"
                                         />
                                         <span className="ml-2 text-sm font-semibold text-red-700">
                                             Remember me
@@ -98,12 +96,9 @@ const Login = () => {
                                 </div>
                                 <div className="text-center mt-6">
                                     <input
-                                        className="bg-red-900 text-white active:bg-red-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
+                                        className="bg-red-900 text-white active:bg-red-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full small-transition"
                                         type="submit"
                                         value="Log In"
-                                        style={{
-                                            transition: "all 0.15s ease 0s",
-                                        }}
                                     ></input>
                                 </div>
                             </form>
