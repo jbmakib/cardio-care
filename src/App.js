@@ -11,6 +11,7 @@ import Footer from "./Pages/Shared/Footer/Footer";
 import Services from "./Pages/Services/Services/Services";
 import BookService from "./Pages/BookService/BookService";
 import ContactUs from "./Pages/ContactUs/ContactUs/ContactUs";
+import About from "./Pages/About/About/About";
 
 function App() {
     return (
@@ -26,6 +27,9 @@ function App() {
                     </Route>
                     <Route path="/services">
                         <Services items={7}></Services>
+                    </Route>
+                    <Route path="/about">
+                        <About></About>
                     </Route>
                     <PrivateRoute path="/service/:id">
                         <BookService></BookService>
