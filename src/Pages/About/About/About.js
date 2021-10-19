@@ -46,6 +46,13 @@ const About = () => {
                         </p>
                     </div>
                 </div>
+                <div>
+                    <img
+                        className="w-3/4"
+                        src="https://media.istockphoto.com/photos/happy-healthcare-practitioner-picture-id138205019?k=20&m=138205019&s=612x612&w=0&h=KpsSMVsplkOqTnAJmOye4y6DcciVYIBe5dYDgYXLVW4="
+                        alt=""
+                    />
+                </div>
             </div>
         </>
     );
