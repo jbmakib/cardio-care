@@ -3,7 +3,8 @@ import Service from "../Service/Service";
 import useServices from "../../../hooks/useServices";
 
 const Services = ({ items }) => {
-    const services = useServices(items);
+    let services = useServices();
+    services = services.slice(0, items);
 
     return (
         <>

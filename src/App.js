@@ -9,6 +9,7 @@ import SignUp from "./Pages/SignUp/SignUp/SignUp";
 import NotFound from "./Pages/NotFound/NotFound";
 import Footer from "./Pages/Shared/Footer/Footer";
 import Services from "./Pages/Services/Services/Services";
+import BookService from "./Pages/BookService/BookService";
 
 function App() {
     return (
@@ -25,6 +26,9 @@ function App() {
                     <Route path="/services">
                         <Services items={7}></Services>
                     </Route>
+                    <PrivateRoute path="/service/:id">
+                        <BookService></BookService>
+                    </PrivateRoute>
                     <Route path="/login">
                         <Login></Login>
                     </Route>
