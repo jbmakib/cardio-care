@@ -1,4 +1,4 @@
-# [Cardio Care](https://github.com/Programming-Hero-Web-Course3/healthcare-related-website-jbmakib)
+# Cardio Care
 
 ### A cardiology related website
 
@@ -7,7 +7,6 @@
 ## Features
 
 -   This app is created by ReactJS
--   Services image
 -   Font Awesome Icon Pack Used ❤
 -   React Router Used 🔥
 -   Tailwind Used
